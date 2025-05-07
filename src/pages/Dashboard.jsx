@@ -47,7 +47,7 @@ export default function UserDashboard() {
   
 
   return (
-    <div className="bg-white flex flex-col items-center justify-center mt-15">
+    <div className="bg-white flex flex-col items-center justify-center mt-10 mb-40">
       <h1 className="text-3xl font-bold text-orange-400 text-center italic mb-6">
         Welcome, {user?.displayName || 'User'}!
       </h1>
@@ -57,14 +57,14 @@ export default function UserDashboard() {
         <p className="text-l text-orange-500">Total Calories Today: <span className='font-bold italic'>{totalCalories > 0 ? totalCalories : 'Loading...'}</span></p>
       </div>
 
-      <div className="w-full max-w-4xl bg-orange-50 p-8 rounded-xl shadow-lg">
+      <div className="w-full max-w-5xl bg-orange-50 p-8 rounded-xl shadow-lg">
         <h2 className="text-2xl font-bold text-orange-400 mb-4 italic">Your Meal Plan</h2>
         {meals.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {meals.map((meal, index) => (
               <div key={index} className="bg-white p-4 rounded-xl shadow-lg">
-                <h3 className="text-xl font-semibold text-orange-500">{meal.title}</h3>
-                <img src={`https://spoonacular.com/recipeImages/${meal.image}`} alt={meal.title} className="w-full h-40 object-cover rounded-xl mt-4" />
+                <div className='bg-orange-400 w-full h-15 rounded-md text-center flex items-center justify-center'><h3 className="text-sm font-semibold  italic text-white">{meal.title}</h3></div>
+                <img src={`https://spoonacular.com/recipeImages/${meal.image}`} alt={meal.title} className="w-full h-60 object-cover rounded-xl mt-4" />
                 <p className="text-orange-600 mt-2">
                   <a href={meal.sourceUrl} target="_blank" rel="noopener noreferrer">
                     <button 

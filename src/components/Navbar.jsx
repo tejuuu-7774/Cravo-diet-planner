@@ -9,10 +9,11 @@ export default function Navbar(){
         <span className="text-2xl font-bold italic">Cravo</span>
       </div>
       <div className=''>
-        <Link to="/dashboard"><button className="hover:text-black px-4 py-2 rounded">MyDashboard</button></Link>
-        <Link to="/favourites"><button className="hover:text-black px-4 py-2 rounded">Favourites</button></Link>
-        <Link to="/about"><button className="hover:text-black px-4 py-2 rounded">About</button></Link>
-        <Link to="/login"><button className="hover:text-black px-4 py-2 rounded">Login</button></Link>
+        <Link to="/dashboard"><button className="hover:text-gray-300 px-4 py-2 rounded">MyDashboard</button></Link>
+        <Link to="/favourites"><button className="hover:text-gray-300 px-4 py-2 rounded">Favourites</button></Link>
+        <Link to="/mealmatch"><button className="hover:text-gray-300 px-4 py-2 rounded">MealMatch</button></Link>
+        <Link to="/about"><button className="hover:text-gray-300 px-4 py-2 rounded">About</button></Link>
+        <Link to="/login"><button className="hover:text-gray-300 px-4 py-2 rounded">Login</button></Link>
       </div>
     </nav>
   );
