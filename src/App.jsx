@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Navbar from './components/Navbar';
 
 import Landing from './pages/LandingPage';
-import Home from './pages/Home';
 import MealPlan from './pages/MealPlan';
 import Recipe from './pages/Recipe';
 import Favourites from './pages/Favourite';
@@ -23,7 +22,6 @@ const AppLayout = () => {
       {!shouldHideNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/home" element={<Home />} />
         <Route path="/meal-plan" element={<MealPlan />} />
         <Route path="/recipe/:id" element={<Recipe />} />
         <Route path="/favourites" element={<Favourites />} />

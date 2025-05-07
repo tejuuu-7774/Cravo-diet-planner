@@ -31,6 +31,19 @@ export default function UserDashboard() {
         .catch((error) => console.error('Error fetching meal data:', error));
     }
   }, [user]);
+
+  const handleAddFavorite = (meal) => {
+    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    
+    if (storedFavorites.find(fav => fav.sourceUrl === meal.sourceUrl)) {
+      alert('This meal is already in your favorites!');
+      return;
+    }
+  
+    const updatedFavorites = [...storedFavorites, meal];
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    alert(`${meal.title} added to your favorites!`);
+  };
   
 
   return (
@@ -55,10 +68,17 @@ export default function UserDashboard() {
                 <p className="text-orange-600 mt-2">
                   <a href={meal.sourceUrl} target="_blank" rel="noopener noreferrer">
                     <button 
-                        type='submit' 
-                        className='className="w-full bg-orange-400 text-white text-sm font-semibold px-2 py-1 rounded-md hover:bg-orange-500 transition duration-300"'
-                    >View Recipe</button></a>
+                      type='submit' 
+                      className='w-full bg-orange-400 text-white text-sm font-semibold px-2 py-1 rounded-md hover:bg-orange-500 transition duration-300'
+                    >View Recipe</button>
+                  </a>
                 </p>
+                <button 
+                  onClick={() => handleAddFavorite(meal)} 
+                  className='mt-2 w-full bg-orange-400 text-white text-sm font-semibold px-2 py-1 rounded-md hover:bg-orange-500 transition duration-300'
+                >
+                  Add to Favorites
+                </button>
               </div>
             ))}
           </div>
