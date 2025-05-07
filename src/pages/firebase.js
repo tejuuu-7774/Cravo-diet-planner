@@ -2,12 +2,12 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAXOcWydKBRBfDTrazs2MJI1Hxx17ufY_0",
-  authDomain: "cravo-aecec.firebaseapp.com",
-  projectId: "cravo-aecec",
-  storageBucket: "cravo-aecec.firebasestorage.app",
-  messagingSenderId: "190066865325",
-  appId: "1:190066865325:web:498eb77e42a9e0751bc224"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,  
+  authDomain: "cravo.firebaseapp.com",
+  projectId: "cravo",
+  storageBucket: "cravo.appspot.com",
+  messagingSenderId: "your-sender-id",
+  appId: "your-app-id",
 };
 
 const app = initializeApp(firebaseConfig);
