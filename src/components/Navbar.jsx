@@ -1,0 +1,21 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+export default function Navbar(){
+  return (
+    <nav className="bg-orange-500 text-white w-full h-14 flex justify-between items-center shadow-md pl-4">
+      <div className="flex items-center gap-3">
+        <img src="src/Images/logo.png" alt="Logo" className="w-10 h-10" />
+        <span className="text-2xl font-bold italic">Cravo</span>
+      </div>
+      <div className=''>
+        <Link to="/home"><button className="hover:text-black px-4 py-2 rounded">Home</button></Link>
+        <Link to="/favourites"><button className="hover:text-black px-4 py-2 rounded">Favourites</button></Link>
+        <Link to="/about"><button className="hover:text-black px-4 py-2 rounded">About</button></Link>
+        <Link to="/login"><button className="hover:text-black px-4 py-2 rounded">Login</button></Link>
+      </div>
+    </nav>
+  );
+};
+
+
