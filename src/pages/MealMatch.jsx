@@ -40,6 +40,8 @@ const MealMatch = () => {
   
     const updatedFavorites = [...storedFavorites, meal];
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+
+    alert('Item saved to favorites!');
   };
 
     const handleClearPlan = () => {
@@ -53,7 +55,7 @@ const MealMatch = () => {
 
   return (
     <div className="bg-white min-h-screen flex flex-col items-center py-10 px-4 mb-40">
-      <h1 className="text-3xl font-bold text-orange-500 italic mb-6">MealMatch: Personalized Plans</h1>
+      <h1 className="text-3xl font-bold text-red-500 italic mb-6">MealMatch - Personalized Plans just for you</h1>
 
       <form onSubmit={handleSubmit} className="mb-6 flex flex-col items-center gap-4 w-full max-w-md">
         <input
@@ -67,14 +69,14 @@ const MealMatch = () => {
         <div className="flex gap-4">
           <button
             type="submit"
-            className="bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 px-6 rounded-md"
+            className="bg-gradient-to-r from-orange-500 to-red-400  text-white font-semibold py-2 px-6 rounded-md"
           >
             Get Your Meal Plan
           </button>
           <button
             type="button"
             onClick={handleClearPlan}
-            className="bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 px-6 rounded-md"
+            className="bg-gradient-to-r from-orange-500 to-red-400 text-white font-semibold py-2 px-6 rounded-md"
           >
             Clear Plan
           </button>
@@ -110,7 +112,7 @@ const MealMatch = () => {
             </a>
             <button
             onClick={() => handleAddFavorite(meal)}
-            className="mt-2 w-full bg-orange-400 text-white text-sm font-semibold px-2 py-2 rounded-md hover:bg-orange-500 transition duration-300"
+            className="mt-2 w-full bg-gradient-to-r from-orange-500 to-red-400 text-white text-sm font-semibold px-2 py-2 rounded-md hover:bg-orange-500 transition duration-300"
           >
             Save to Favorites
           </button>

@@ -21,11 +21,13 @@ export default function Login() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-white">
       <div className="w-full max-w-md p-8 space-y-6 bg-orange-50 rounded-2xl shadow-lg">
-        <h2 className="text-3xl font-bold text-orange-400 text-center italic">Login to CRAVO</h2>
-
+        <div className="flex justify-center">
+          <img src="src/Images/Cravologo.png" alt="Cravo Logo" className="h-20 w-20" />
+        </div>
+          <h2 className="text-3xl font-bold text-orange-600 text-center italic ">Login to CRAVO</h2>
         <form className="space-y-4" onSubmit={handleLogin}>
           <div>
-            <label className="block mb-1 text-orange-400 font-medium">Email</label>
+            <label className="block mb-1 text-red-400 font-medium">Email</label>
             <input
               type="email"
               value={email}
@@ -36,7 +38,7 @@ export default function Login() {
           </div>
 
           <div>
-            <label className="block mb-1 text-orange-400 font-medium">Password</label>
+            <label className="block mb-1 text-red-400 font-medium">Password</label>
             <input
               type="password"
               value={password}
@@ -49,14 +51,14 @@ export default function Login() {
 
           <button
             type="submit"
-            className="w-full bg-orange-400 text-white font-semibold py-2 rounded-xl hover:bg-orange-500 transition duration-300">
+            className="w-full bg-gradient-to-r from-orange-500 to-red-400 text-white font-semibold py-2 rounded-xl hover:bg-orange-500 transition duration-300">
             Login
           </button>
         </form>
 
-        <p className="text-center text-orange-600">
+        <p className="text-center text-orange-600 italic">
           Don't have an account?{" "}
-          <Link to="/signup" className="text-orange-500 font-semibold hover:underline">
+          <Link to="/signup" className="text-red-600 font-semibold hover:underline">
             Sign Up
           </Link>
         </p>

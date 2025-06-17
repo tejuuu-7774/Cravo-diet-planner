@@ -12,13 +12,15 @@ const FavoritesPage = () => {
     const updatedFavorites = favorites.filter((meal) => meal.sourceUrl !== mealSourceUrl);
     setFavorites(updatedFavorites);
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+
+    alert('Item removed from favorites!');
   };
 
   return (
     <div className="bg-white flex flex-col items-center justify-center mt-15 mb-40">
-      <h1 className="text-3xl font-bold text-orange-400 text-center italic mb-6">Your Favorite Recipes</h1>
+      <h1 className="text-3xl font-bold text-red-500 text-center italic mb-6">Your Favorite Recipes</h1>
 
-      <div className="w-full max-w-5xl bg-orange-50 p-8 rounded-xl shadow-lg">
+      <div className="w-full max-w-5xl bg-red-50 p-8 rounded-xl shadow-lg">
       {favorites.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {favorites.map((meal) => (
@@ -33,13 +35,13 @@ const FavoritesPage = () => {
                 <a href={meal.sourceUrl} target="_blank" rel="noopener noreferrer">
                   <button 
                     type='submit' 
-                    className='w-full bg-orange-400 text-white text-sm font-semibold px-2 py-1 rounded-md hover:bg-orange-500 transition duration-300'
+                    className='w-full bg-gradient-to-r from-orange-500 to-red-400 text-white text-sm font-semibold px-2 py-1 rounded-md hover:bg-orange-500 transition duration-300'
                   >View Recipe</button>
                 </a>
               </p>
               <button 
                 onClick={() => handleRemoveFavorite(meal.sourceUrl)} 
-                className="mt-2 w-full bg-red-400 text-white text-sm font-semibold px-2 py-1 rounded-md hover:bg-red-600 transition duration-300"
+                className="mt-2 w-full bg-gradient-to-r from-red-100 to-orange-100 text-orange-500 text-sm font-semibold px-2 py-1 rounded-md hover:bg-red-600 transition duration-300"
               >
                 Remove from Favorites
               </button>

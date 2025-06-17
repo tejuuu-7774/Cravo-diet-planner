@@ -22,7 +22,7 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-white px-6 py-12 flex flex-col items-center">
-      <h1 className="text-3xl font-bold text-orange-500 italic mb-4">About Cravo ....</h1>
+      <h1 className="text-3xl font-bold text-red-500 italic mb-4">About Cravo ....</h1>
 
       <p className="text-center text-gray-700 max-w-2xl mb-6 italic">
         <span className="font-semibold text-orange-400 ">Cravo</span> is a simple and smart meal planning webpage.
@@ -73,7 +73,7 @@ const About = () => {
 
         <button
           type="submit"
-          className="w-full bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 rounded-md"
+          className="w-full bg-gradient-to-r from-orange-500 to-red-400 text-white font-semibold py-2 rounded-md"
         >
           Send Message
         </button>
