@@ -1,16 +1,172 @@
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
-export default function Landing(){
+const Landing = () => {
   return (
-    <div className="h-screen flex flex-col justify-center items-center bg-white text-orange-600">
-      <img src="src/Images/Cravologo.png" alt="CRAVO Logo" className="w-50 h-50 " />
-      <h1 className="text-4xl font-bold mb-2 italic">Welcome to CRAVO</h1>
-      <p className="mb-6 text-lg text-center max-w-xl italic">Plan your meals. Track your calories. Live healthier every day.</p>
-      <div className="flex gap-4">
-        <Link to="/login" className="px-7 py-2 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-xl">Login</Link>
-        <Link to="/signup" className="px-6 py-2 border border-orange-500 text-orange-600 rounded-xl hover:bg-orange-100">Sign Up</Link>
-      </div>
+    <div className="min-h-screen flex flex-col bg-gray-50 text-gray-800">
+      <Navbar />
+
+      {/* Hero Section */}
+      <section
+        className="flex flex-col items-center justify-center text-center py-10 px-2 bg-gradient-to-b from-orange-100 to-white min-h-[60vh]"
+        aria-labelledby="hero-title"
+      >
+        <img
+          src="/logo.png"
+          alt="CRAVO Logo"
+          className="w-24 h-24 mb-6 rounded-full shadow-md"
+        />
+        <h1
+          id="hero-title"
+          className="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight text-gray-900"
+        >
+          Welcome to CRAVO
+        </h1>
+        <p className="text-lg md:text-xl max-w-3xl mb-8 text-gray-600 ">
+          Plan your meals, track your calories, and live healthier every day with CRAVO’s intuitive tools and personalized insights.
+        </p>
+        <div className="flex gap-4">
+          <Link
+            to="/signup"
+            className="px-8 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-full font-semibold shadow-lg hover:from-orange-600 hover:to-red-600 transition-all transform hover:scale-105"
+            aria-label="Sign up for CRAVO"
+          >
+            Get Started
+          </Link>
+          <Link
+            to="/about"
+            className="px-8 py-3 border-2 border-orange-500 text-orange-500 rounded-full font-semibold hover:bg-orange-50 hover:border-orange-600 transition-all transform hover:scale-105"
+            aria-label="Learn more about CRAVO"
+          >
+            Learn More
+          </Link>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-8 px-4 bg-white" aria-labelledby="features-title">
+        <h2
+          className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-900"
+        >
+          Why Choose CRAVO?
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-8">
+          <div className="text-center p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1">
+            <img
+              src="/MealPlanning.webp"
+              alt="Meal Planning"
+              className="w-25 h-25 mx-auto mb-4"
+            />
+            <h3 className="text-xl font-semibold mb-2 text-gray-800">
+              Meal Planning
+            </h3>
+            <p className="text-gray-600 leading-relaxed">
+              Easily plan your weekly meals with customizable recipes tailored to your dietary needs and preferences.
+            </p>
+          </div>
+          <div className="text-center p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1">
+            <img
+              src="/Calorietracking.png"
+              alt="Calorie Tracking"
+              className="w-25 h-25 mx-auto mb-4"
+            />
+            <h3 className="text-xl font-semibold mb-2 text-gray-800">
+              Calorie Tracking
+            </h3>
+            <p className="text-gray-600 leading-relaxed">
+              Monitor your daily calorie intake with intuitive tools to stay aligned with your health goals.
+            </p>
+          </div>
+          <div className="text-center p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1">
+            <img
+              src="/Healthinsights.webp"
+              alt="Health Insights"
+              className="w-25 h-25 mx-auto mb-4"
+            />
+            <h3 className="text-xl font-semibold mb-2 text-gray-800">
+              Health Insights
+            </h3>
+            <p className="text-gray-600 leading-relaxed">
+              Receive personalized nutrition tips and insights to optimize your lifestyle and well-being.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section
+        className="py-16 px-4 bg-gradient-to-r from-orange-500 to-red-500 text-white text-center"
+        aria-labelledby="cta-title"
+      >
+        <h2
+          id="cta-title"
+          className="text-3xl md:text-4xl font-bold mb-6 animate__animated animate__fadeIn"
+        >
+          Start Your Health Journey Today
+        </h2>
+        <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8 leading-relaxed animate__animated animate__fadeIn animate__delay-1s">
+          Join thousands of users transforming their lives with CRAVO’s personalized diet planning tools.
+        </p>
+        <div className="flex gap-4 justify-center">
+          <Link
+            to="/signup"
+            className="px-8 py-3 bg-white text-orange-500 rounded-full font-semibold shadow-lg hover:bg-gray-100 transition-all transform hover:scale-105"
+            aria-label="Get started with CRAVO"
+          >
+            Get Started
+          </Link>
+          <Link
+            to="/mealmatch"
+            className="px-8 py-3 border-2 border-white text-white rounded-full font-semibold hover:bg-white/10 transition-all transform hover:scale-105"
+            aria-label="Explore MealMatch"
+          >
+            Explore MealMatch
+          </Link>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-8 px-4 bg-gray-800 text-white text-center">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-6">
+            <div className="flex items-center gap-3">
+              <img
+                src="/logo.png"
+                alt="CRAVO Logo"
+                className="w-10 h-10 rounded-full"
+              />
+              <span className="text-xl font-bold italic">Cravo</span>
+            </div>
+            <div className="flex flex-col md:flex-row gap-4">
+              <a
+                href="/privacy"
+                className="hover:text-orange-500 transition-colors"
+                aria-label="Privacy Policy"
+              >
+                Privacy Policy
+              </a>
+              <a
+                href="/terms"
+                className="hover:text-orange-500 transition-colors"
+                aria-label="Terms of Service"
+              >
+                Terms of Service
+              </a>
+              <a
+                href="/contact"
+                className="hover:text-orange-500 transition-colors"
+                aria-label="Contact Us"
+              >
+                Contact Us
+              </a>
+            </div>
+          </div>
+          <p className="text-sm">© 2025 CRAVO. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   );
 };
 
+export default Landing;
