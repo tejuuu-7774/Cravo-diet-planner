@@ -10,7 +10,6 @@ export default function UserDashboard() {
   const [isLoggedIn, setIsLoggedIn] = useState(!!auth.currentUser);
   const [notification, setNotification] = useState(null);
 
-  // Auth state listener
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user) {
@@ -23,7 +22,6 @@ export default function UserDashboard() {
     return () => unsubscribe();
   }, [navigate]);
 
-  // Load and update selected meals from localStorage
   useEffect(() => {
     const loadData = () => {
       const storedMeals = JSON.parse(localStorage.getItem('selectedMeals') || '[]');
@@ -35,7 +33,6 @@ export default function UserDashboard() {
     return () => window.removeEventListener('storage', loadData);
   }, []);
 
-  // Clear notification after 3 seconds
   useEffect(() => {
     if (notification) {
       const timer = setTimeout(() => setNotification(null), 3000);
@@ -43,20 +40,17 @@ export default function UserDashboard() {
     }
   }, [notification]);
 
-  // Remove from meal plan
   const handleRemoveFromPlan = (mealId) => {
     setSelectedMeals((prev) => prev.filter((m) => m.id !== mealId));
     setNotification('Meal removed from plan!');
   };
 
-  // Clear meal plan
   const handleClearPlan = () => {
     setSelectedMeals([]);
     localStorage.removeItem('selectedMeals');
     setNotification('Meal plan cleared!');
   };
 
-  // Navigate to MealMatch
   const handleGoToMealMatch = () => {
     navigate('/mealmatch');
   };
@@ -100,7 +94,7 @@ export default function UserDashboard() {
               className="flex items-center gap-2 px-3 py-2 bg-white hover:bg-orange-50 text-orange-700 font-medium rounded-lg border border-orange-200 transition-all duration-200 text-sm cursor-pointer"
             >
               <RefreshCw className="w-4 h-4" />
-              Refresh
+              Reset the Plan
             </button>
           </div>
 

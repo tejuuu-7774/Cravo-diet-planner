@@ -9,7 +9,6 @@ const FavoritesPage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(!!auth.currentUser);
   const [notification, setNotification] = useState(null);
 
-  // Check if user is logged in
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user) {
@@ -22,13 +21,11 @@ const FavoritesPage = () => {
     return () => unsubscribe();
   }, [navigate]);
 
-  // Load favorites from localStorage
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
     setFavorites(storedFavorites);
   }, []);
 
-  // Clear notification after 3 seconds
   useEffect(() => {
     if (notification) {
       const timer = setTimeout(() => setNotification(null), 3000);

@@ -1,16 +1,46 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from '../components/Navbar';
+import { LogIn, UserPlus } from 'lucide-react';
 
 const Landing = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 text-gray-800">
-      <Navbar />
 
-      {/* Hero Section */}
+      {/* nav section */}
+      <nav className="bg-gradient-to-r from-orange-600 to-red-500 shadow-md py-2 px-6 sm:px-6 lg:px-8 sticky top-0 z-50">
+        <div className="max-w-8xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-3">
+            <img
+              src="/logo.png"
+              alt="CRAVO Logo"
+              className="w-10 h-10"
+            />
+            <span className="text-xl font-bold text-orange-100 italic">Cravo</span>
+          </div>
+
+          <div className="flex items-center gap-4 sm:gap-10">
+            <Link
+              to="/login"
+              className="flex items-center gap-2 text-white hover:text-orange-900 text-m duration-200"
+              aria-label="Log in to CRAVO"
+            >
+              <LogIn className="w-4 h-4 sm:w-5 sm:h-5" />
+              Login
+            </Link>
+            <Link
+              to="/signup"
+              className="flex items-center gap-2 px-2 sm:px-4 py-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-medium rounded-lg text-sm  shadow-md"
+            >
+              <UserPlus className="w-4 h-4 sm:w-5 sm:h-5" />
+              Sign Up
+            </Link>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero section */}
       <section
-        className="flex flex-col items-center justify-center text-center py-10 px-2 bg-gradient-to-b from-orange-100 to-white min-h-[60vh]"
-        aria-labelledby="hero-title"
+        className="flex flex-col items-center justify-center text-center py-10 px-2 bg-gradient-to-b from-orange-100 to-white min-h-[50vh]"
       >
         <img
           src="/logo.png"
@@ -23,36 +53,28 @@ const Landing = () => {
         >
           Welcome to CRAVO
         </h1>
-        <p className="text-lg md:text-xl max-w-3xl mb-8 text-gray-600 ">
+        <p className="text-lg md:text-xl max-w-3xl mb-8 text-gray-600">
           Plan your meals, track your calories, and live healthier every day with CRAVO’s intuitive tools and personalized insights.
         </p>
         <div className="flex gap-4">
           <Link
             to="/signup"
-            className="px-8 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-full font-semibold shadow-lg hover:from-orange-600 hover:to-red-600 transition-all transform hover:scale-105"
-            aria-label="Sign up for CRAVO"
+            className="px-8 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-full text-md shadow-lg hover:from-orange-600 hover:to-red-600 transform hover:scale-105"
           >
             Get Started
-          </Link>
-          <Link
-            to="/about"
-            className="px-8 py-3 border-2 border-orange-500 text-orange-500 rounded-full font-semibold hover:bg-orange-50 hover:border-orange-600 transition-all transform hover:scale-105"
-            aria-label="Learn more about CRAVO"
-          >
-            Learn More
           </Link>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-8 px-4 bg-white" aria-labelledby="features-title">
+      {/* Features */}
+      <section className="py-8 px-4 bg-white">
         <h2
           className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-900"
         >
           Why Choose CRAVO?
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-8">
-          <div className="text-center p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1">
+          <div className="text-center p-6 bg-gray-50 rounded-lg hover:shadow-lg transform hover:-translate-y-1">
             <img
               src="/MealPlanning.webp"
               alt="Meal Planning"
@@ -94,7 +116,7 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Call to Action Section */}
+      {/* calling section */}
       <section
         className="py-16 px-4 bg-gradient-to-r from-orange-500 to-red-500 text-white text-center"
         aria-labelledby="cta-title"
@@ -117,19 +139,18 @@ const Landing = () => {
             Get Started
           </Link>
           <Link
-            to="/mealmatch"
+            to="/login"
             className="px-8 py-3 border-2 border-white text-white rounded-full font-semibold hover:bg-white/10 transition-all transform hover:scale-105"
-            aria-label="Explore MealMatch"
           >
             Explore MealMatch
           </Link>
         </div>
       </section>
 
-      {/* Footer */}
+      {/* footer section */}
       <footer className="py-8 px-4 bg-gray-800 text-white text-center">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-6">
+          <div className="flex justify-center items-center gap-6 mb-6">
             <div className="flex items-center gap-3">
               <img
                 src="/logo.png"
@@ -137,29 +158,6 @@ const Landing = () => {
                 className="w-10 h-10 rounded-full"
               />
               <span className="text-xl font-bold italic">Cravo</span>
-            </div>
-            <div className="flex flex-col md:flex-row gap-4">
-              <a
-                href="/privacy"
-                className="hover:text-orange-500 transition-colors"
-                aria-label="Privacy Policy"
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="/terms"
-                className="hover:text-orange-500 transition-colors"
-                aria-label="Terms of Service"
-              >
-                Terms of Service
-              </a>
-              <a
-                href="/contact"
-                className="hover:text-orange-500 transition-colors"
-                aria-label="Contact Us"
-              >
-                Contact Us
-              </a>
             </div>
           </div>
           <p className="text-sm">© 2025 CRAVO. All rights reserved.</p>

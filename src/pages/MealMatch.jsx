@@ -17,7 +17,6 @@ const MealMatch = () => {
   const [notification, setNotification] = useState(null);
   const loadMoreRef = useRef(null);
 
-  // Check if user is logged in
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user) {
@@ -30,7 +29,6 @@ const MealMatch = () => {
     return () => unsubscribe();
   }, [navigate]);
 
-  // Load meals from localStorage
   useEffect(() => {
     const storedMeals = JSON.parse(localStorage.getItem('mealMatchMeals') || '[]');
     const storedNutrients = JSON.parse(localStorage.getItem('mealMatchNutrients') || 'null');
@@ -38,7 +36,6 @@ const MealMatch = () => {
     setNutrients(storedNutrients);
   }, []);
 
-  // Clear notification after 3 seconds
   useEffect(() => {
     if (notification) {
       const timer = setTimeout(() => setNotification(null), 3000);
@@ -46,7 +43,6 @@ const MealMatch = () => {
     }
   }, [notification]);
 
-  // Infinite scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -60,7 +56,6 @@ const MealMatch = () => {
     return () => observer.disconnect();
   }, [isLoading]);
 
-  // Fetch meals when page or diet changes
   useEffect(() => {
     if (page === 1 || !calories) return;
     fetchMeals();
@@ -78,13 +73,21 @@ const MealMatch = () => {
       const response = await fetch(url);
       if (!response.ok) throw new Error('Failed to fetch meals.');
       const data = await response.json();
-      const newMeals = (data.meals || [])
+      let newMeals = (data.meals || [])
         .filter((meal) => !meals.some((m) => m.id === meal.id))
         .map((meal) => ({
           ...meal,
           isVegetarian: dietType === 'vegetarian' ? true : dietType === 'non-vegetarian' ? false : Math.random() > 0.5,
           calories: data.nutrients?.calories ? Math.round(data.nutrients.calories / (data.meals?.length || 1)) : 0,
         }));
+      
+      // Filter meals based on dietType
+      if (dietType === 'vegetarian') {
+        newMeals = newMeals.filter((meal) => meal.isVegetarian);
+      } else if (dietType === 'non-vegetarian') {
+        newMeals = newMeals.filter((meal) => !meal.isVegetarian);
+      }
+
       if (newMeals.length > 0) {
         setMeals((prev) => [...prev, ...newMeals]);
         setNutrients(page === 1 ? data.nutrients || null : nutrients);
@@ -108,31 +111,25 @@ const MealMatch = () => {
   };
 
   const handleAddFavorite = (meal) => {
-    console.log(`Saving ${meal.title} to favorites`);
     const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
     if (storedFavorites.some((fav) => fav.id === meal.id)) {
-      console.log(`Notification: ${meal.title} is already in favorites!`);
       setNotification(`${meal.title} is already in favorites!`);
       return;
     }
     const updatedFavorites = [...storedFavorites, meal];
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-    console.log(`Notification: ${meal.title} added to favorites!`);
     setNotification(`${meal.title} added to favorites!`);
     window.dispatchEvent(new Event('storage'));
   };
 
   const handleAddToPlan = (meal) => {
-    console.log(`Adding ${meal.title} to plan`);
     const storedSelectedMeals = JSON.parse(localStorage.getItem('selectedMeals') || '[]');
     if (storedSelectedMeals.some((m) => m.id === meal.id)) {
-      console.log(`Notification: ${meal.title} is already in your plan!`);
       setNotification(`${meal.title} is already in your plan!`);
       return;
     }
     const updatedSelectedMeals = [...storedSelectedMeals, meal];
     localStorage.setItem('selectedMeals', JSON.stringify(updatedSelectedMeals));
-    console.log(`Notification: ${meal.title} added to plan!`);
     setNotification(`${meal.title} added to plan!`);
     window.dispatchEvent(new Event('storage'));
   };
