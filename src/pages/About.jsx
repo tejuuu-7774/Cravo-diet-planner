@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { auth } from './firebase';
 import Navbar from '../components/Navbar';
 import emailjs from 'emailjs-com';
+import Footer from '../components/Footer';
 
 const About = () => {
   const navigate = useNavigate();
@@ -117,6 +118,7 @@ const About = () => {
           </button>
         </form>
       </div>
+      <Footer/>
     </div>
   );
 };

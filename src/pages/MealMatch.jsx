@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { auth } from './firebase';
 import Navbar from '../components/Navbar';
 import { ExternalLink, Heart, Plus } from 'lucide-react';
+import Footer from '../components/Footer';
 
 const MealMatch = () => {
   const navigate = useNavigate();
@@ -307,6 +308,7 @@ const MealMatch = () => {
           </div>
         )}
       </div>
+      <Footer/>
     </div>
   );
 };

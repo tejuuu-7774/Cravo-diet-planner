@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from './firebase';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const FavoritesPage = () => {
   const navigate = useNavigate();
@@ -107,6 +108,7 @@ const FavoritesPage = () => {
           )}
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

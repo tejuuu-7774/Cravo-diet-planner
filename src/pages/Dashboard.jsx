@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { auth } from '../pages/firebase';
 import { ChefHat, Sparkles, RefreshCw, ExternalLink, Flame, Target, TrendingUp, X } from 'lucide-react';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 export default function UserDashboard() {
   const navigate = useNavigate();
@@ -233,7 +234,10 @@ export default function UserDashboard() {
             )}
           </div>
         </div>
+
       </div>
+
+      <Footer/>
     </div>
   );
 }
