@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from './firebase';
 import Navbar from '../components/Navbar';
+import emailjs from 'emailjs-com';
 
 const About = () => {
   const navigate = useNavigate();
@@ -33,8 +34,26 @@ const About = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    alert('Thanks for your message!');
-    setFormData({ name: '', email: '', message: '' });
+
+    emailjs.send(
+      'service_k7sdigm',           // your Service ID
+      'template_kuw46ag',          // your Template ID
+      {
+        from_name: formData.name,
+        reply_to: formData.email,
+        message: formData.message,
+      },
+      'NlILcOjVoG2JjtQpD'          // your Public Key
+    )
+    .then((response) => {
+      console.log('SUCCESS!', response.status, response.text);
+      alert('Thanks for your message!');
+      setFormData({ name: '', email: '', message: '' });
+    })
+    .catch((err) => {
+      console.error('FAILED...', err);
+      alert('Failed to send message. Please try again.');
+    });
   };
 
   const navLinks = [
