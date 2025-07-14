@@ -45,9 +45,9 @@ export default function Login() {
       await sendPasswordResetEmail(auth, email);
       setMessage('✅ Password reset email sent! Check your inbox or spam/junk folder.');
       setEmail('');
-      setTimeout(() => setShowResetForm(false), 2000); // Return to login after 2 seconds
+      setTimeout(() => setShowResetForm(false), 2000); 
     } catch (error) {
-      setError(getFriendlyError(error.code));
+      setError(ErrorMessages(error.code));
     } finally {
       setLoading(false);
     }

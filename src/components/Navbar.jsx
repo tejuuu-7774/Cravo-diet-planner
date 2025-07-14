@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, User } from 'lucide-react';
+import { Menu, X, User, LogOut } from 'lucide-react'; // Added LogOut import
 import { auth } from '../pages/firebase';
 import { signOut } from 'firebase/auth';
 
@@ -24,7 +24,7 @@ function Navbar({ links, isLoggedIn = false }) {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      navigate('/'); 
+      navigate('/');
     } catch (error) {
       console.error('Error logging out:', error);
     }
@@ -34,7 +34,7 @@ function Navbar({ links, isLoggedIn = false }) {
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
-    setDropdownOpen(false); 
+    setDropdownOpen(false);
   };
 
   const toggleDropdown = () => {
@@ -68,7 +68,7 @@ function Navbar({ links, isLoggedIn = false }) {
           <div className="relative">
             <button
               onClick={toggleDropdown}
-              className="px-4 py-2 hover:bg-orange-200 hover:bg-opacity-20 hover:text-black rounded flex items-center gap-2"
+              className="px-4 py-2 hover:bg-orange-200 hover:bg-opacity-20 hover:text-orange-700 rounded flex items-center gap-2"
             >
               <User size={20} />
               Profile
@@ -77,8 +77,9 @@ function Navbar({ links, isLoggedIn = false }) {
               <div className="absolute top-12 right-0 bg-white rounded-lg shadow-lg border border-orange-200">
                 <button
                   onClick={handleLogout}
-                  className="w-full px-4 py-2 text-left text-orange-700 hover:bg-orange-50 rounded-lg"
+                  className="w-full px-4 py-2 text-left text-orange-700 hover:bg-orange-50 rounded-lg flex items-center gap-2" // Added flex and gap
                 >
+                  <LogOut size={20} /> {/* Added LogOut icon */}
                   Logout
                 </button>
               </div>
@@ -102,7 +103,7 @@ function Navbar({ links, isLoggedIn = false }) {
                 className={
                   currentPage.pathname === link.path
                     ? 'w-full text-center py-2 bg-white bg-opacity-20'
-                    : 'w-full text-center py-2 hover:bg-orange-200 hover:bg-opacity-20 hover:text-black'
+                    : 'w-full text-center py-2 hover:bg-orange-200 hover:bg-opacity-20 hover:text-orange-700'
                 }
               >
                 {link.name}
@@ -113,7 +114,7 @@ function Navbar({ links, isLoggedIn = false }) {
             <>
               <button
                 onClick={toggleDropdown}
-                className="w-full text-center py-2 hover:bg-orange-200 hover:bg-opacity-20 hover:text-black flex items-center justify-center gap-2"
+                className="w-full text-center py-2 hover:bg-orange-200 hover:bg-opacity-20 hover:text-orange-700 flex items-center justify-center gap-2"
               >
                 <User size={20} />
                 Profile
@@ -121,8 +122,9 @@ function Navbar({ links, isLoggedIn = false }) {
               {dropdownOpen && (
                 <button
                   onClick={handleLogout}
-                  className="w-full text-center py-2 bg-white bg-opacity-20 text-orange-700 hover:bg-orange-50"
+                  className="w-full text-center py-2 bg-white bg-opacity-20 text-orange-700 hover:bg-orange-50 flex items-center justify-center gap-2" // Added flex and gap
                 >
+                  <LogOut size={20} /> {/* Added LogOut icon */}
                   Logout
                 </button>
               )}

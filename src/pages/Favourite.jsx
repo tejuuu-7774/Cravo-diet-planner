@@ -71,7 +71,7 @@ const FavoritesPage = () => {
       )}
       <Navbar links={navLinks} isLoggedIn={isLoggedIn} />
       <div className="flex flex-col items-center justify-center py-10 px-4">
-        <h1 className="text-3xl font-bold text-red-500 text-center italic mb-6">Your Favorite Recipes</h1>
+        <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-600 via-red-500 to-orange-700 bg-clip-text text-transparent ">Your Favorite Recipes</h1>
         <div className="w-full max-w-5xl bg-red-50 p-8 rounded-xl shadow-lg">
           {favorites.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

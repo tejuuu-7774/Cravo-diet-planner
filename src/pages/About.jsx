@@ -37,14 +37,14 @@ const About = () => {
     e.preventDefault();
 
     emailjs.send(
-      'service_k7sdigm',           // your Service ID
-      'template_kuw46ag',          // your Template ID
+      'service_k7sdigm',          
+      'template_kuw46ag',         
       {
         from_name: formData.name,
         reply_to: formData.email,
         message: formData.message,
       },
-      'NlILcOjVoG2JjtQpD'          // your Public Key
+      'NlILcOjVoG2JjtQpD'      
     )
     .then((response) => {
       console.log('SUCCESS!', response.status, response.text);
@@ -68,7 +68,7 @@ const About = () => {
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
       <Navbar links={navLinks} isLoggedIn={isLoggedIn} />
       <div className="px-6 py-12 flex flex-col items-center">
-        <h1 className="text-3xl font-bold text-red-500 italic mb-4">About Cravo ....</h1>
+        <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-600 via-red-500 to-orange-700 bg-clip-text text-transparent mb-5">About Cravo ....</h1>
         <p className="text-center text-gray-700 max-w-2xl mb-6 italic">
           <span className="font-semibold text-orange-400">Cravo</span> is a simple and smart meal planning webpage.
           You just enter your calorie goal, and Cravo gives you a full day meal plan. It's made to help you
