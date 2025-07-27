@@ -18,6 +18,7 @@ const MealMatch = () => {
   const [notification, setNotification] = useState(null);
   const loadMoreRef = useRef(null);
 
+  // checks if user is logged in 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user) {
@@ -57,6 +58,7 @@ const MealMatch = () => {
     return () => observer.disconnect();
   }, [isLoading]);
 
+  
   useEffect(() => {
     if (page === 1 || !calories) return;
     fetchMeals();
