@@ -10,6 +10,7 @@ const FavoritesPage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(!!auth.currentUser);
   const [notification, setNotification] = useState(null);
 
+  // Checks if user is logged in to added the meals to favourites.
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user) {
@@ -22,6 +23,7 @@ const FavoritesPage = () => {
     return () => unsubscribe();
   }, [navigate]);
 
+  // Stores the meal cards in array
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
     setFavorites(storedFavorites);
@@ -53,6 +55,7 @@ const FavoritesPage = () => {
 
   return (
   <div className="flex flex-col min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
+    {/* This animation is added to show the notification slide in */}
     <style>
       {`
         @keyframes slide-in {
@@ -70,7 +73,7 @@ const FavoritesPage = () => {
       </div>
     )}
     <Navbar links={navLinks} isLoggedIn={isLoggedIn} />
-    <main className="flex-grow">
+    <div className="flex-grow">
       <div className="flex flex-col items-center justify-center py-10 px-4">
         <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-600 via-red-500 to-orange-700 bg-clip-text text-transparent mb-5">Your Favorite Recipes</h1>
         <div className="bg-white/70 w-full max-w-5xl bg-red-50 p-8 rounded-xl shadow-lg">
@@ -89,7 +92,7 @@ const FavoritesPage = () => {
                     <a href={meal.sourceUrl} target="_blank" rel="noopener noreferrer">
                       <button
                         type="button"
-                        className="w-full bg-gradient-to-r from-orange-500 to-red-400 text-white text-sm font-semibold px-2 py-1 rounded-md hover:bg-orange-500 transition duration-300"
+                        className="w-full bg-gradient-to-r from-orange-500 to-red-400 text-white text-sm font-semibold px-2 py-1 rounded-md hover:bg-orange-500 transition duration-300 cursor-pointer"
                       >
                         View Recipe
                       </button>
@@ -97,7 +100,7 @@ const FavoritesPage = () => {
                   </p>
                   <button
                     onClick={() => handleRemoveFavorite(meal)}
-                    className="mt-2 w-full bg-gradient-to-r from-red-100 to-orange-100 text-orange-500 text-sm font-semibold px-2 py-1 rounded-md hover:bg-red-600 transition duration-300"
+                    className="mt-2 w-full bg-gradient-to-r from-red-100 to-orange-100 text-orange-500 text-sm font-semibold px-2 py-1 rounded-md hover:bg-red-600 transition duration-300 cursor-pointer"
                   >
                     Remove from Favorites
                   </button>
@@ -109,7 +112,8 @@ const FavoritesPage = () => {
           )}
         </div>
       </div>
-    </main>
+    </div>
+
     <Footer />
   </div>
 );

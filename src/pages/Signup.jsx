@@ -9,6 +9,7 @@ export default function Signup() {
   const [name, setName] = useState('');
   const navigate = useNavigate();
 
+  // this will fetch the user details after signing up
   const handleSignup = async (e) => {
     e.preventDefault();
     try {

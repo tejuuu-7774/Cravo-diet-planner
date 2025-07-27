@@ -14,6 +14,7 @@ const About = () => {
   });
   const [isLoggedIn, setIsLoggedIn] = useState(!!auth.currentUser);
 
+  // Checks if user is logged in or not
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
@@ -26,6 +27,7 @@ const About = () => {
     return () => unsubscribe();
   }, [navigate]);
 
+  // Updates the value dynamically
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
@@ -36,6 +38,7 @@ const About = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
+    // Used emailjs to link the message to my email.
     emailjs.send(
       'service_k7sdigm',          
       'template_kuw46ag',         

@@ -99,7 +99,7 @@ export default function Login() {
                       setError('');
                       setMessage('');
                     }}
-                    className="text-red-600 font-semibold hover:underline text-sm"
+                    className="text-red-600 font-semibold hover:underline text-sm cursor-pointer"
                     disabled={loading}
                   >
                     Forgot Password?
@@ -120,7 +120,7 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-gradient-to-r from-orange-500 to-red-400 text-white font-semibold py-2 rounded-xl hover:bg-orange-500 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                className="w-full bg-gradient-to-r from-orange-500 to-red-400 text-white font-semibold py-2 rounded-xl hover:bg-orange-500 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 cursor-pointer"
               >
                 {loading ? (
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
@@ -138,7 +138,7 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-gradient-to-r from-orange-500 to-red-400 text-white font-semibold py-2 rounded-xl hover:bg-orange-500 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                className="w-full bg-gradient-to-r from-orange-500 to-red-400 text-white font-semibold py-2 rounded-xl hover:bg-orange-500 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 cursor-pointer"
               >
                 {loading ? (
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
@@ -157,7 +157,7 @@ export default function Login() {
                     setError('');
                     setMessage('');
                   }}
-                  className="text-red-600 font-semibold hover:underline text-sm"
+                  className="text-red-600 font-semibold hover:underline text-sm cursor-pointer"
                 >
                   Back to Login
                 </button>

@@ -147,7 +147,7 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* footer section */}
+      {/* footer section is customised since this is a langing page*/}
       <footer className="py-8 px-4 bg-gray-800 text-white text-center">
         <div className="max-w-6xl mx-auto">
           <div className="flex justify-center items-center gap-6 mb-6">
