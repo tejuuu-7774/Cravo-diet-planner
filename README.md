@@ -1,5 +1,7 @@
 🍱 CRAVO - Personalized Diet Planner
+
 Live Link :- [https://cravo-diet-planner.vercel.app]
+
 Category: Cooking & Culinary Arts | Capstone Project Sem-2
 
 CRAVO is a smart meal planner app that creates personalized daily meal plans based on your calorie goals. It leverages the Spoonacular API to fetch real recipes with detailed nutritional info. Users can set goals (lose, maintain, gain weight), track progress, and save favorite recipes for easy access.
