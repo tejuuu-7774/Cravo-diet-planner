@@ -57,7 +57,7 @@ export default function Login() {
     <div className="flex justify-center items-center min-h-screen bg-white">
       <div className="w-full max-w-md p-8 space-y-6 bg-orange-50 rounded-2xl shadow-lg">
         <div className="flex justify-center">
-          <img src="/Cravologo.png" alt="Cravo Logo" className="h-20 w-20" />
+          <img src="/logo.png" alt="Cravo Logo" className="h-20 w-20" />
         </div>
         <h2 className="text-3xl font-bold text-orange-600 text-center italic">
           {showResetForm ? 'Reset Password' : 'Login to CRAVO'}
