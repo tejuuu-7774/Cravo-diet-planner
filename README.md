@@ -1,12 +1,28 @@
-# React + Vite
+🍱 CRAVO - Personalized Diet Planner
+Live Link :- [https://cravo-diet-planner.vercel.app]
+Category: Cooking & Culinary Arts | Capstone Project Sem-2
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CRAVO is a smart meal planner app that creates personalized daily meal plans based on your calorie goals. It leverages the Spoonacular API to fetch real recipes with detailed nutritional info. Users can set goals (lose, maintain, gain weight), track progress, and save favorite recipes for easy access.
 
-Currently, two official plugins are available:
+Features
+- Set and track healthy calorie goals
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Get automatic meal suggestions tailored to your daily calorie target
 
-## Expanding the ESLint configuration
+- View recipes with full nutrition details and cooking instructions
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Save and manage your favorite meals
+
+- Secure user login with Firebase authentication
+
+Technology Stack
+Frontend: React, Tailwind CSS , Framer-motion
+
+Routing: React Router
+
+Authentication: Firebase
+
+API: Spoonacular
+
+Deployment: Vercel 
+
