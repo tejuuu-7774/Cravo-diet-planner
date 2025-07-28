@@ -77,9 +77,9 @@ function Navbar({ links, isLoggedIn = false }) {
               <div className="absolute top-12 right-0 bg-white rounded-lg shadow-lg border border-orange-200">
                 <button
                   onClick={handleLogout}
-                  className="w-full px-4 py-2 text-left text-orange-700 hover:bg-orange-50 rounded-lg flex items-center gap-2" // Added flex and gap
+                  className="w-full px-4 py-2 text-left text-orange-700 hover:bg-orange-50 rounded-lg flex items-center gap-2" 
                 >
-                  <LogOut size={20} /> {/* Added LogOut icon */}
+                  <LogOut size={20} /> 
                   Logout
                 </button>
               </div>
@@ -102,7 +102,7 @@ function Navbar({ links, isLoggedIn = false }) {
                 onClick={toggleMenu}
                 className={
                   currentPage.pathname === link.path
-                    ? 'w-full text-center py-2 bg-white bg-opacity-20'
+                    ? 'w-full text-center py-2 bg-red-100 bg-opacity-20 text-orange-600'
                     : 'w-full text-center py-2 hover:bg-orange-200 hover:bg-opacity-20 hover:text-orange-700'
                 }
               >

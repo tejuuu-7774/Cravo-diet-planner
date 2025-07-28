@@ -58,10 +58,10 @@ const MealMatch = () => {
     return () => observer.disconnect();
   }, [isLoading]);
 
-  
   useEffect(() => {
     if (page === 1 || !calories) return;
     fetchMeals();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, dietType]);
 
   const fetchMeals = async () => {
@@ -71,7 +71,12 @@ const MealMatch = () => {
       const apiKey = import.meta.env.VITE_SPOONACULAR_API_KEY;
       if (!apiKey) throw new Error('API key is missing.');
       const targetCalories = parseInt(calories);
-      const dietParam = dietType === 'vegetarian' ? '&diet=vegetarian' : dietType === 'non-vegetarian' ? '&excludeIngredients=tofu,beans,lentils' : '';
+      const dietParam =
+        dietType === 'vegetarian'
+          ? '&diet=vegetarian'
+          : dietType === 'non-vegetarian'
+          ? '&excludeIngredients=tofu,beans,lentils'
+          : '';
       const url = `https://api.spoonacular.com/mealplanner/generate?apiKey=${apiKey}&timeFrame=day&targetCalories=${targetCalories}&type=main%20course,dessert,breakfast&diet=balanced${dietParam}&exclude=peanuts,shellfish`;
       const response = await fetch(url);
       if (!response.ok) throw new Error('Failed to fetch meals.');
@@ -80,8 +85,11 @@ const MealMatch = () => {
         .filter((meal) => !meals.some((m) => m.id === meal.id))
         .map((meal) => ({
           ...meal,
-          isVegetarian: dietType === 'vegetarian' ? true : dietType === 'non-vegetarian' ? false : Math.random() > 0.5,
-          calories: data.nutrients?.calories ? Math.round(data.nutrients.calories / (data.meals?.length || 1)) : 0,
+          isVegetarian:
+            dietType === 'vegetarian' ? true : dietType === 'non-vegetarian' ? false : Math.random() > 0.5,
+          calories: data.nutrients?.calories
+            ? Math.round(data.nutrients.calories / (data.meals?.length || 1))
+            : 0,
         }));
 
       // Filter meals based on dietType
@@ -153,11 +161,6 @@ const MealMatch = () => {
     { path: '/favourites', name: 'Favourites', show: isLoggedIn },
     { path: '/about', name: 'About Us', show: true },
   ];
-
-  const groupedMeals = [];
-  for (let i = 0; i < meals.length; i += 3) {
-    groupedMeals.push(meals.slice(i, i + 3));
-  }
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -239,76 +242,67 @@ const MealMatch = () => {
           )}
 
           {meals.length > 0 && (
-            <div className="flex flex-col items-center w-full">
+            <div className="w-full max-w-7xl">
               <div className="mb-4 text-center text-orange-600">
                 <p>Total Meals: {meals.length}</p>
               </div>
-              {groupedMeals.map((group, index) => (
-                <div
-                  key={index}
-                  className="flex flex-nowrap justify-center gap-6 mb-6 mx-auto"
-                  style={{
-                    width: `${group.length * (window.innerWidth < 640 ? 180 : 320) + (group.length - 1) * 24}px`,
-                  }}
-                >
-                  {group.map((meal) => (
-                    <div
-                      key={meal.id}
-                      className="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden hover:shadow-lg transition-all duration-200 flex-shrink-0 w-[180px] sm:w-[320px]"
-                    >
-                      <div className="relative group">
-                        <img
-                          src={`https://spoonacular.com/recipeImages/${meal.id}-312x231.jpg`}
-                          alt={meal.title}
-                          className="w-full h-40 object-cover transition-transform duration-300 group-hover:scale-105"
-                          onError={(e) => {
-                            e.target.src = '/placeholder.png';
-                          }}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              {/* Responsive grid for meal cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-2">
+                {meals.map((meal) => (
+                  <div
+                    key={meal.id}
+                    className="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden hover:shadow-lg transition-all duration-200 w-full flex flex-col"
+                  >
+                    <div className="relative group">
+                      <img
+                        src={`https://spoonacular.com/recipeImages/${meal.id}-312x231.jpg`}
+                        alt={meal.title}
+                        className="w-full h-40 object-cover transition-transform duration-300 group-hover:scale-105 rounded-t-xl"
+                        onError={(e) => {
+                          e.target.src = '/placeholder.png';
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-xl"></div>
+                    </div>
+                    <div className="p-4 flex flex-col flex-grow">
+                      <h3 className="font-semibold text-orange-900 text-sm mb-3 line-clamp-2 leading-tight">
+                        {meal.title}
+                      </h3>
+                      <div className="flex items-center gap-3 text-xs text-orange-600 mb-3">
+                        <span>{meal.isVegetarian ? 'Vegetarian' : 'Non-Vegetarian'}</span>
+                        <span>{meal.calories ? `${Math.round(meal.calories)} cal` : 'Calories unavailable'}</span>
                       </div>
-                      <div className="p-4">
-                        <h3 className="font-semibold text-orange-900 text-sm mb-3 line-clamp-2 leading-tight">
-                          {meal.title}
-                        </h3>
-                        <div className="flex items-center gap-3 text-xs text-orange-600 mb-3">
-                          <span>{meal.isVegetarian ? 'Vegetarian' : 'Non-Vegetarian'}</span>
-                          <span>{meal.calories ? `${Math.round(meal.calories)} cal` : 'Calories unavailable'}</span>
-                        </div>
-                        <div className="space-y-2">
-                          <a
-                            href={meal.sourceUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-medium py-2 px-3 rounded-lg text-xs transition-all duration-200 cursor-pointer"
-                          >
-                            <ExternalLink className="w-4 h-4" />
-                            View Recipe
-                          </a>
-                          <button
-                            onClick={() => handleAddFavorite(meal)}
-                            className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-orange-50 to-red-50 hover:from-orange-100 hover:to-red-100 text-orange-700 hover:text-red-700 font-medium py-2 px-3 rounded-lg border border-orange-200 hover:border-red-200 transition-all duration-200 text-xs cursor-pointer"
-                          >
-                            <Heart className="w-4 h-4" />
-                            Save to Favorites
-                          </button>
-                          <button
-                            onClick={() => handleAddToPlan(meal)}
-                            className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-green-50 to-green-100 hover:from-green-100 hover:to-green-200 text-green-700 font-medium py-2 px-3 rounded-lg border border-green-200 transition-all duration-200 text-xs cursor-pointer"
-                          >
-                            <Plus className="w-4 h-4" />
-                            Add to Plan
-                          </button>
-                        </div>
+                      <div className="space-y-2 mt-auto">
+                        <a
+                          href={meal.sourceUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-medium py-2 px-3 rounded-lg text-xs transition-all duration-200 cursor-pointer"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          View Recipe
+                        </a>
+                        <button
+                          onClick={() => handleAddFavorite(meal)}
+                          className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-orange-50 to-red-50 hover:from-orange-100 hover:to-red-100 text-orange-700 hover:text-red-700 font-medium py-2 px-3 rounded-lg border border-orange-200 hover:border-red-200 transition-all duration-200 text-xs cursor-pointer"
+                        >
+                          <Heart className="w-4 h-4" />
+                          Save to Favorites
+                        </button>
+                        <button
+                          onClick={() => handleAddToPlan(meal)}
+                          className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-green-50 to-green-100 hover:from-green-100 hover:to-green-200 text-green-700 font-medium py-2 px-3 rounded-lg border border-green-200 transition-all duration-200 text-xs cursor-pointer"
+                        >
+                          <Plus className="w-4 h-4" />
+                          Add to Plan
+                        </button>
                       </div>
                     </div>
-                  ))}
-                </div>
-              ))}
+                  </div>
+                ))}
+              </div>
               <div ref={loadMoreRef} className="h-10"></div>
-              {isLoading && (
-                <div className="text-center text-orange-600">Loading more meals...</div>
-              )}
+              {isLoading && <div className="text-center text-orange-600 mt-4">Loading more meals...</div>}
             </div>
           )}
         </div>

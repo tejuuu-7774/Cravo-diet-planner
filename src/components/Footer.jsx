@@ -23,8 +23,8 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="flex justify-center">
-            <div className="flex flex-wrap gap-6 text-sm">
+          <div className="flex justify-center items-center">
+            <div className="flex gap-2 text-sm">
               {['Dashboard', 'Mealmatch', 'Favourites', 'About'].map((link, index) => (
                 <a
                   key={index}
