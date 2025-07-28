@@ -188,7 +188,7 @@ export default function UserDashboard() {
                 )}
                 <button
                   onClick={handleGoToMealMatch}
-                  className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-medium rounded-lg text-sm cursor-pointer"
+                  className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-medium rounded-lg text-sm cursor-pointer w-[180px]"
                 >
                   <ChefHat className="w-4 h-4" />
                   Go to MealMatch
