@@ -175,7 +175,7 @@ export default function UserDashboard() {
                 </div>
                 <h2 className="text-xl font-bold text-orange-900">Your Selected Meal Plan</h2>
               </div>
-              <div className="flex flex-col gap-2 w-full">
+              <div className="flex gap-2 w-full">
                 {/* here selectedmeals will give the length of cards being added from mealmatch. */}
                 {selectedMeals.length > 0 && (
                   <button
