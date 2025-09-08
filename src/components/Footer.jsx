@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React from 'react';
 import { ChefHat, Instagram, Twitter, Facebook, Heart } from 'lucide-react';
 
@@ -26,13 +27,13 @@ const Footer = () => {
           <div className="flex justify-center items-center">
             <div className="flex gap-2 text-sm">
               {['Dashboard', 'Mealmatch', 'Favourites', 'About'].map((link, index) => (
-                <a
+                <Link
                   key={index}
                   href={`/${link.toLowerCase()}`}
                   className="text-white hover:text-gray-400 transition-colors duration-200 font-medium"
                 >
                   {link}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -45,7 +46,7 @@ const Footer = () => {
                 { icon: Twitter, href: 'https://twitter.com', color: 'hover:text-blue-500' },
                 { icon: Facebook, href: 'https://facebook.com', color: 'hover:text-blue-600' },
               ].map((social, index) => (
-                <a
+                <Link
                   key={index}
                   href={social.href}
                   target="_blank"
@@ -53,7 +54,7 @@ const Footer = () => {
                   className={`p-2 text-white ${social.color} transition-all duration-200 hover:scale-110`}
                 >
                   <social.icon className="w-5 h-5" />
-                </a>
+                </Link>
               ))}
             </div>
             <p className="text-xs text-white text-center md:text-right">
